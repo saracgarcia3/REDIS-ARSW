@@ -1,46 +1,34 @@
-# REDIS-ARSW 
-
-
-## Requisitos
-- Java 8+ (compila en 8; funciona con 11/17/21 también)
-- Maven
-- Docker (para correr Redis)
 # 📔​ REDIS-ARSW
+Este proyecto implementa un sistema de **Publish/Subscribe** utilizando **Redis** como broker de mensajes y **Spring Boot** como framework. Es ideal para aplicaciones que requieren **comunicación en tiempo real** a través de la publicación y suscripción a canales, seguimos el tutorial para su implementación:
 
-1. Empezamos siguiendo el tutorial, aplicamos el siguiente comando el cual creara el **pom.xml**, **carpetas src/main/java**, **src/test/java**, etc:
+## 🚀 **Características**
+- **Publish/Subscribe** utilizando **Redis**.
+- **7 Receptores (Listeners)** que reciben los mensajes enviados por el productor.
+- Fácil de configurar y correr localmente con **Docker** y **Spring Boot**.
 
-<p align="center">
-<img width="970" height="294" alt="image" src="https://github.com/user-attachments/assets/06b78540-8709-4608-a46a-67e274fc1d6f" />
-</p>
+🖥️ Arquitectura del Proyecto
 
-2. Actualizamos el **pom.xml** con el que se nos especifico en la guia:
-<p align="center">
-<img width="685" height="207" alt="image" src="https://github.com/user-attachments/assets/b422312a-7d55-4a16-908f-eadc86dd2267" />
-</p>
+1. **PSRedisPrimerAppStarter**: el punto de entrada del proyecto, donde Spring Boot arranca la aplicación.
+2. **PSRedisConnectionConfiguration:** configura la conexión a Redis utilizando Lettuce como cliente Redis de Spring.
+3. **PSRedisListenerContainer:** un contenedor que maneja las suscripciones a los canales de Redis.
+4. **PSRedisTemplate:** facilita la publicación de mensajes en Redis.
+5. **Receiver:** un receptor que escucha los mensajes en el canal PSChannel.
+6. **Producer:** un productor que envía mensajes al canal PSChannel.
 
-3. Compilamos y ejecutamos
+## ⚙️ **Pasos para Ejecutar el Proyecto**
 
+### 1. **Levantar Redis con Docker**
+Primero se necesita tener **Docker** instalado y funcionando. Luego, se abre una terminal y se ejecuta el siguiente comando para iniciar Redis y vemos como corre en otra terminal:
+
+```bash
+docker run --name some-redis -p 45000:6379 -d redis
+```
 <p align="center">
 <img width="883" height="460" alt="image" src="https://github.com/user-attachments/assets/003f113c-965e-4a0b-a2e0-ebe13a5af198" />
 </p>
 <p align="center">
 <img width="683" height="164" alt="image" src="https://github.com/user-attachments/assets/c55637bc-328c-43d5-bbea-91087459cd54" />
 </p>
-## Levantar Redis
-```bash
-
-docker run --name some-redis -p 45000:6379 -d redis
-```
-
-## Compilar y ejecutar
-```bash
-mvn clean package
-java -cp target/RedisPubSubPrimer-1.0-SNAPSHOT.jar co.edu.escuelaing.redispubsubprimer.PSRedisPrimerAppStarter
-```
 
 
 
-## Notas
-- Canal: `PSChannel`
-- Mensajes: 6
-- Receivers: 7 (scope prototype)
