@@ -6,7 +6,7 @@ Este proyecto implementa un sistema de **Publish/Subscribe** utilizando **Redis*
 - **7 Receptores (Listeners)** que reciben los mensajes enviados por el productor.
 - Fácil de configurar y correr localmente con **Docker** y **Spring Boot**.
 
-🖥️ Arquitectura del Proyecto
+## 🖥️ **Arquitectura del Proyecto**
 
 1. **PSRedisPrimerAppStarter**: el punto de entrada del proyecto, donde Spring Boot arranca la aplicación.
 2. **PSRedisConnectionConfiguration:** configura la conexión a Redis utilizando Lettuce como cliente Redis de Spring.
